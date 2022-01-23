@@ -1,3 +1,5 @@
+BYE = '\nTchau!\n'
+
 NO_ERRORS = ['', '', '']
 ONE_ERRORS = [' O ', '', '']
 TWO_ERRORS = [' O ', '/  ', '']

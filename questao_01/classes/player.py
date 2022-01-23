@@ -21,7 +21,7 @@ class Player:
         return self._points
 
     def set_name(self, name):
-        self._name = name.upper()
+        self._name = name
 
     def save_result(self):
         save_result_on_file(self.name, self._words, self.points)

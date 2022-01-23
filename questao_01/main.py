@@ -1,7 +1,9 @@
-from utils import clear, print_game_board
+from tabulate import tabulate
 
 from classes.word import Word
 from classes.player import Player
+from constants import BYE
+from utils import clear, print_game_board, get_table_to_list
 
 
 def new_game(same_player=None):
@@ -39,27 +41,35 @@ def new_game(same_player=None):
                     name = input('Informe seu nome para salvar o resultado: ')
                     player.set_name(name)
                     player.save_result()
+                    print(BYE)
             else:
-                print(f'\nVocê perdeu a palavra era {word.word}!')
+                print(f'\nVocê perdeu! A palavra era {word.word}.')
                 name = input('Informe seu nome para salvar o resultado: ')
                 player.set_name(name)
                 player.save_result()
+                print(BYE)
 
 
 def list_scores():
-    pass
+    clear()
+    table = get_table_to_list()
+    print(tabulate(table, headers=['NOME','PALAVRAS', 'PONTOS']))
+    print()
 
 
 def main():
     option = 0
 
-    while option not in [1, 2]:
+    while option not in (1, 2, 3):
         clear()
-        option = int(input('1 - Novo jogo\n2 - Ver scores\nSelecione uma opção: '))
+        option = int(input('1 - Novo jogo\n2 - Ver scores\n3 - Sair\nSelecione uma opção: '))
     
-    selected = {1: new_game, 2: list_scores}
-
+    selected = {1: new_game, 2: list_scores, 3: print(BYE)}
     selected[option]()
 
+
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except:
+        pass

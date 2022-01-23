@@ -41,3 +41,20 @@ def print_game_board(word, player):
     print(f'Pontos: {player.points}')
     player.print_errors_draw()
     print(word.hidden_word)
+
+
+def get_table_to_list() -> list:
+    scores_file = open('scores.txt', 'r')
+    lines = scores_file.read().split('\n')
+    table = []
+    for line in lines:
+        if not line: continue
+        name, word, points = '', '', ''
+        values = line.split('; ')
+        if len(values) > 2:
+            name, word, points = values
+        else:
+            name, points = values
+        table.append((name, word, points))
+    scores_file.close()
+    return table
